@@ -17,40 +17,9 @@ st.set_page_config(page_title="Avalanche Data Set",
 st.title("🏔️ Avalanche Data Set")
 
 # df = session.sql("SELECT * FROM AVALANCHE.PUBLIC.CUSTOMER_REVIEWS").to_pandas()
-df = pd.read_csv("https://github.com/lescalonag33/rapr-with-streamlit/blob/main/M2/Lab3/data/customer_reviews.csv")
 
-#-------------------------------------
-
-# Replace with the known raw GitHub URL of your CSV file
-KNOWN_GITHUB_RAW_URL = "https://github.com/lescalonag33/rapr-with-streamlit/blob/main/M2/Lab3/data/customer_reviews.csv"
-
-try:
-    response = requests.get(KNOWN_GITHUB_RAW_URL)
-    response.raise_for_status()  # Raise an exception for bad status codes
-
-    csv_data = io.StringIO(response.text)
-    df = pd.read_csv(csv_data)
-
-    st.write("### Data Preview:")
-    st.dataframe(df)
-
-    st.write("### Column Information:")
-    st.write(df.info())
-
-    if not df.empty:
-        st.write("### Descriptive Statistics:")
-        st.write(df.describe())
-
-except requests.exceptions.RequestException as e:
-    st.error(f"Error fetching the CSV file from GitHub: {e}")
-except pd.errors.EmptyDataError:
-    st.error("The CSV file from GitHub is empty.")
-except pd.errors.ParserError:
-    st.error("Error parsing the CSV file from GitHub. Please ensure it is properly formatted.")
-except Exception as e:
-    st.error(f"An unexpected error occurred: {e}")
-
-#-------------------------------------
+GITHUB_RAW_URL = 'https://raw.githubusercontent.com/lescalonag33/rapr-with-streamlit/main/M2/Lab3/data/customer_reviews.csv'
+df = pd.read_csv(GITHUB_RAW_URL, index_col=0)
 
 # Ensure SENTIMENT_SCORE is numeric
 df['SENTIMENT_SCORE'] = pd.to_numeric(df['SENTIMENT_SCORE'])
