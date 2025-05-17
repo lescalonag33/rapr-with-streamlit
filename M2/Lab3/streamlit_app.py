@@ -17,12 +17,7 @@ st.title("🏔️ Avalanche Data Set")
 #df = pd.read_csv("data/customer_reviews.csv")
 
 uploaded_file = st.file_uploader("Upload a CSV file", type="csv")
-
-if uploaded_file is not None:
-    try:
-        df = pd.read_csv(uploaded_file)
-else:
-    st.info("Please upload a CSV file to view its contents.")
+df = pd.read_csv(uploaded_file)
 
 
 # Ensure SENTIMENT_SCORE is numeric
