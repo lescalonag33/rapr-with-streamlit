@@ -14,7 +14,16 @@ st.set_page_config(page_title="Avalanche Data Set",
 st.title("🏔️ Avalanche Data Set")
 
 # df = session.sql("SELECT * FROM AVALANCHE.PUBLIC.CUSTOMER_REVIEWS").to_pandas()
-df = pd.read_csv("data/customer_reviews.csv")
+#df = pd.read_csv("data/customer_reviews.csv")
+
+uploaded_file = st.file_uploader("Upload a CSV file", type="csv")
+
+if uploaded_file is not None:
+    try:
+        df = pd.read_csv(uploaded_file)
+else:
+    st.info("Please upload a CSV file to view its contents.")
+
 
 # Ensure SENTIMENT_SCORE is numeric
 df['SENTIMENT_SCORE'] = pd.to_numeric(df['SENTIMENT_SCORE'])
