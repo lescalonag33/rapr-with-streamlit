@@ -17,7 +17,7 @@ st.set_page_config(page_title="Avalanche Data Set",
 st.title("🏔️ Avalanche Data Set")
 
 # df = session.sql("SELECT * FROM AVALANCHE.PUBLIC.CUSTOMER_REVIEWS").to_pandas()
-#df = pd.read_csv("data/customer_reviews.csv")
+df = pd.read_csv("https://github.com/lescalonag33/rapr-with-streamlit/blob/main/M2/Lab3/data/customer_reviews.csv")
 
 #-------------------------------------
 
